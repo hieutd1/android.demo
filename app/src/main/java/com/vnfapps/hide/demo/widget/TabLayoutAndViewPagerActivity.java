@@ -8,22 +8,19 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.vnfapps.hide.demo.MainAdapter;
 import com.vnfapps.hide.demo.R;
+import com.vnfapps.hide.demo.widget.Adapter.DefaultPagerAdapter;
 
 /**
  * Created by hieut_000 on 2/23/2016.
  */
-public class TabLayoutAndViewPager extends AppCompatActivity {
+public class TabLayoutAndViewPagerActivity extends AppCompatActivity {
     ViewHolder holder;
 
     public static void start(Context context) {
-        Intent starter = new Intent(context, TabLayoutAndViewPager.class);
+        Intent starter = new Intent(context, TabLayoutAndViewPagerActivity.class);
         context.startActivity(starter);
     }
 
@@ -34,6 +31,7 @@ public class TabLayoutAndViewPager extends AppCompatActivity {
         init();
     }
 
+
     private void init() {
         holder = new ViewHolder();
     }
@@ -42,14 +40,16 @@ public class TabLayoutAndViewPager extends AppCompatActivity {
         public ActionBar actionBar;
         public TabLayout tabLayout;
         public ViewPager viewPager;
+        public DefaultPagerAdapter defaultPagerAdapter;
 
         public ViewHolder() {
             actionBar = getSupportActionBar();
             if (actionBar != null) {
-                actionBar.setWindowTitle(TabLayoutAndViewPager.class.getSimpleName());
+                actionBar.setWindowTitle(TabLayoutAndViewPagerActivity.class.getSimpleName());
             }
             tabLayout = (TabLayout) findViewById(R.id.tabLayout);
             viewPager = (ViewPager) findViewById(R.id.viewPager);
+            defaultPagerAdapter = new DefaultPagerAdapter(TabLayoutAndViewPagerActivity.this);
             viewPager.setAdapter(new PagerAdapter() {
                 @Override
                 public int getCount() {
