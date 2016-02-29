@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         app:tabBackground="@drawable/bg_activity_tab_item"
         app:tabGravity="fill"
-        app:tabIndicatorHeight="0dp"
+        app:tabIndicatorHeight="1dp"
         app:tabMode="fixed"
         app:tabPadding="@dimen/adapter_item_padding"
         app:tabSelectedTextColor="@color/colorAccent"
