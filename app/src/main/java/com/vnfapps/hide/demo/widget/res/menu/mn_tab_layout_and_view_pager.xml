@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <item
+        android:id="@+id/mn_normal"
+        android:title="@string/mn_tab_layout_and_view_pager_normal" />
+    <item
+        android:id="@+id/mn_custom_tab_view"
+        android:title="@string/mn_tab_layout_and_view_pager_custom_tab_view" />
 </menu>

@@ -3,21 +3,21 @@ package com.vnfapps.hide.demo.widget;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.vnfapps.hide.demo.R;
-import com.vnfapps.hide.demo.widget.Adapter.DefaultPagerAdapter;
+import com.vnfapps.hide.demo.widget.viewholder.TabLayoutAndViewPagerViewHolder;
 
 /**
  * Created by hieut_000 on 2/23/2016.
  */
 public class TabLayoutAndViewPagerActivity extends AppCompatActivity {
-    ViewHolder holder;
+    TabLayoutAndViewPagerViewHolder holder;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, TabLayoutAndViewPagerActivity.class);
@@ -31,38 +31,48 @@ public class TabLayoutAndViewPagerActivity extends AppCompatActivity {
         init();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.mn_tab_layout_and_view_pager, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            case R.id.mn_normal:
+                setTabItemCustomView(null, 0, 999);
+                break;
+            case R.id.mn_custom_tab_view:
+                setTabItemCustomView(R.layout.custom_tab_item, 0, 999);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.translate_left_in, R.anim.translate_left_out);
+    }
 
     private void init() {
-        holder = new ViewHolder();
+        holder = new TabLayoutAndViewPagerViewHolder(this, findViewById(R.id.container));
     }
 
-    private class ViewHolder {
-        public ActionBar actionBar;
-        public TabLayout tabLayout;
-        public ViewPager viewPager;
-        public DefaultPagerAdapter defaultPagerAdapter;
+    public void setTabItemCustomView(int layoutResId, int startPos, int endPos) {
+        View view = LayoutInflater.from(this).inflate(layoutResId, null);
+        setTabItemCustomView(view, startPos, endPos);
 
-        public ViewHolder() {
-            actionBar = getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.setWindowTitle(TabLayoutAndViewPagerActivity.class.getSimpleName());
-            }
-            tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-            viewPager = (ViewPager) findViewById(R.id.viewPager);
-            defaultPagerAdapter = new DefaultPagerAdapter(TabLayoutAndViewPagerActivity.this);
-            viewPager.setAdapter(new PagerAdapter() {
-                @Override
-                public int getCount() {
-                    return 0;
-                }
-
-
-
-                @Override
-                public boolean isViewFromObject(View view, Object object) {
-                    return false;
-                }
-            });
-        }
     }
+
+    public void setTabItemCustomView(View view, int startPos, int endPos) {
+        holder.setTabItemCustomView(view, startPos, endPos);
+
+    }
+
 }

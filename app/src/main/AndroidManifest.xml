@@ -19,7 +19,7 @@
         </activity>
 
         <activity
-            android:name=".widget.TabLayoutAndViewPager"
+            android:name=".widget.TabLayoutAndViewPagerActivity"
             android:screenOrientation="portrait"></activity>
     </application>
 

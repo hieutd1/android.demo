@@ -10,8 +10,13 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabBackground="@drawable/bg_activity_tab_item"
+        app:tabGravity="fill"
         app:tabIndicatorHeight="0dp"
-        app:tabMode="scrollable"/>
+        app:tabMode="fixed"
+        app:tabPadding="@dimen/adapter_item_padding"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabTextColor="@android:color/white" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"

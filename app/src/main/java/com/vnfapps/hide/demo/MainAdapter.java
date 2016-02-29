@@ -9,10 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.vnfapps.hide.demo.widget.TabLayoutAndViewPager;
+import com.vnfapps.hide.demo.widget.TabLayoutAndViewPagerActivity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -20,12 +19,12 @@ import java.util.List;
  */
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
-    private Context context;
     private final List<Item> data = new ArrayList<>();
+    private Context context;
 
     public MainAdapter(Context context) {
         this.context = context;
-        data.add(new Item(TabLayoutAndViewPager.class));
+        data.add(new Item(TabLayoutAndViewPagerActivity.class));
     }
 
     @Override
@@ -56,7 +55,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         }
     }
 
-    public class OnItemClickListener implements View.OnClickListener{
+    public class OnItemClickListener implements View.OnClickListener {
         Item item;
 
         public OnItemClickListener(Item item) {
@@ -67,6 +66,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         public void onClick(View v) {
             Intent intent = new Intent(context, item.aClass);
             context.startActivity(intent);
+            ((AppCompatActivity) context).overridePendingTransition(R.anim.translate_right_in, R.anim.translate_right_out);
         }
     }
 
