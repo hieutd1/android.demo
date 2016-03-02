@@ -1,13 +1,13 @@
 package com.vnfapps.hide.demo.widget.viewholder;
 
 import android.content.Context;
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.vnfapps.hide.demo.R;
+import com.vnfapps.hide.demo.widget.TabLayout;
 import com.vnfapps.hide.demo.widget.TabLayoutAndViewPagerActivity;
 import com.vnfapps.hide.demo.widget.adapter.DefaultPagerAdapter;
 
@@ -46,7 +46,14 @@ public class TabLayoutAndViewPagerViewHolder {
             TabLayout.Tab tab = tabLayout.getTabAt(i);
             if (tab != null) {
                 tab.setCustomView(view);
+                if (view != null) {
+
+                }
             }
         }
+    }
+
+    public void setTabItemCustomView(TabLayout.TabView tabItemView, int startPos, int endPos) {
+        tabLayout.setTabItemCustomView(tabItemView, startPos, endPos);
     }
 }

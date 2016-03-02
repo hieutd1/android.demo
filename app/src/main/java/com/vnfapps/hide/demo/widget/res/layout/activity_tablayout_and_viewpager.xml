@@ -6,15 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.design.widget.TabLayout
+    <com.vnfapps.hide.demo.widget.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabBackground="@drawable/bg_activity_tab_item"
+        app:tabBackground="@drawable/bg_tab_item"
         app:tabGravity="fill"
         app:tabIndicatorHeight="1dp"
         app:tabMode="fixed"
-        app:tabPadding="@dimen/adapter_item_padding"
         app:tabSelectedTextColor="@color/colorAccent"
         app:tabTextColor="@android:color/white" />
 

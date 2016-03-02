@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.vnfapps.hide.demo.R;
+import com.vnfapps.hide.demo.widget.tablayout.CustomTabItem;
 import com.vnfapps.hide.demo.widget.viewholder.TabLayoutAndViewPagerViewHolder;
 
 /**
@@ -45,10 +46,10 @@ public class TabLayoutAndViewPagerActivity extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.mn_normal:
-                setTabItemCustomView(null, 0, 999);
+                setTabItemCustomView(TabLayout.TabView.class, 0, 999);
                 break;
             case R.id.mn_custom_tab_view:
-                setTabItemCustomView(R.layout.custom_tab_item, 0, 999);
+                setTabItemCustomView(CustomTabItem.class, 0, 999);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -72,6 +73,11 @@ public class TabLayoutAndViewPagerActivity extends AppCompatActivity {
 
     public void setTabItemCustomView(View view, int startPos, int endPos) {
         holder.setTabItemCustomView(view, startPos, endPos);
+
+    }
+
+    public void setTabItemCustomView(Class<? extends TabLayout.TabView> itemViewClass, int startPos, int endPos) {
+        holder.setTabItemCustomView(itemViewClass, startPos, endPos);
 
     }
 
