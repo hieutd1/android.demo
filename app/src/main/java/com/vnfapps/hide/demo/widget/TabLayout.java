@@ -60,6 +60,21 @@ public class TabLayout extends android.support.design.widget.TabLayout {
         return null;
     }
 
+    public void removeTabItemCustomView(int position) {
+        Tab tab = getTabAt(position);
+        if (tab != null) {
+            tab.setCustomView(null);
+            tab.setTag(null);
+        }
+    }
+
+    public TabView getTabView(int position) {
+        Tab tab = getTabAt(position);
+        if (tab != null) {
+            return (TabView) tab.getTag();
+        }
+        return null;
+    }
 
     //****************************************************************
     //* Inner classes
