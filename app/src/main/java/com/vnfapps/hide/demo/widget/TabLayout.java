@@ -38,15 +38,26 @@ public class TabLayout extends android.support.design.widget.TabLayout {
     //****************************************************************
     //* Functions
     //****************************************************************
-    public void setTabItemCustomView(TabView tabView, int startPos, int endPos) {
-        int start = Math.max(startPos, 0);
-        int end = Math.min(getTabCount(), endPos);
-        for (int i = start; i < end; i++) {
-            Tab tab = getTabAt(i);
-            if (tab != null) {
+    public <T extends TabView> T setTabItemCustomView(T tabView, int position) {
+//        int start = Math.max(startPos, 0);
+//        int end = Math.min(getTabCount(), endPos);
+//        for (int i = start; i < end; i++) {
+//            Tab tab = getTabAt(i);
+//            if (tab != null) {
+//                tab.setCustomView(tabView.mView);
+//            }
+//        }
+        Tab tab = getTabAt(position);
+        if (tab != null) {
+            if (tabView != null) {
                 tab.setCustomView(tabView.mView);
+                tab.setTag(tabView);
+                return tabView;
+            } else {
+                tab.setCustomView(null);
             }
         }
+        return null;
     }
 
 

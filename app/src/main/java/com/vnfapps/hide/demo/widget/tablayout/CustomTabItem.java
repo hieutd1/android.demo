@@ -19,12 +19,11 @@ public class CustomTabItem extends TabLayout.TabView<CustomTabItem.ItemData> {
     ImageView mIcon;
     TextView mTitle;
 
-    public CustomTabItem(Context context, ItemData data) {
+    public CustomTabItem(Context context) {
         super(context);
         mView = LayoutInflater.from(context).inflate(R.layout.custom_tab_item, null);
         mIcon = (ImageView) mView.findViewById(R.id.icon);
         mTitle = (TextView) mView.findViewById(R.id.title);
-        bindData(data);
     }
 
     @Override
@@ -34,8 +33,9 @@ public class CustomTabItem extends TabLayout.TabView<CustomTabItem.ItemData> {
     }
 
 
-    public class ItemData extends BaseEntity {
+    public static class ItemData extends BaseEntity {
         public int iconResId;
+        public int selectedIconResId;
         public String title;
     }
 

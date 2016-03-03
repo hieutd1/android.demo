@@ -10,6 +10,7 @@ import com.vnfapps.hide.demo.R;
 import com.vnfapps.hide.demo.widget.TabLayout;
 import com.vnfapps.hide.demo.widget.TabLayoutAndViewPagerActivity;
 import com.vnfapps.hide.demo.widget.adapter.DefaultPagerAdapter;
+import com.vnfapps.hide.demo.widget.tablayout.CustomTabItem;
 
 /**
  * Created by Hide on 2/29/2016.
@@ -39,21 +40,30 @@ public class TabLayoutAndViewPagerViewHolder {
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    public void setTabItemCustomView(View view, int startPos, int endPos) {
+    public void setTabItemCustomView(int startPos, int endPos) {
         int start = Math.max(startPos, 0);
         int end = Math.min(tabLayout.getTabCount(), endPos);
         for (int i = start; i < end; i++) {
-            TabLayout.Tab tab = tabLayout.getTabAt(i);
-            if (tab != null) {
-                tab.setCustomView(view);
-                if (view != null) {
-
+            CustomTabItem customTabItem = tabLayout.setTabItemCustomView(new CustomTabItem(context), i);
+            if (customTabItem != null) {
+                CustomTabItem.ItemData itemData = new CustomTabItem.ItemData();
+                itemData.title = defaultPagerAdapter.getPageTitle(i).toString();
+                itemData.iconResId = R.drawable.ic_tab_item;
+                customTabItem.bindData(itemData);
+                if (i == tabLayout.getSelectedTabPosition()) {
+                    customTabItem.getRootView().setSelected(true);
                 }
             }
         }
+
     }
 
-    public void setTabItemCustomView(TabLayout.TabView tabItemView, int startPos, int endPos) {
-        tabLayout.setTabItemCustomView(tabItemView, startPos, endPos);
+    public void removeTabItemCustomView(int startPos, int endPos) {
+        int start = Math.max(startPos, 0);
+        int end = Math.min(tabLayout.getTabCount(), endPos);
+        for (int i = start; i < end; i++) {
+            tabLayout.setTabItemCustomView(null, i);
+        }
     }
+
 }

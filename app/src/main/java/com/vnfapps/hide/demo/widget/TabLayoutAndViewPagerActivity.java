@@ -4,14 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.vnfapps.hide.demo.R;
-import com.vnfapps.hide.demo.widget.tablayout.CustomTabItem;
 import com.vnfapps.hide.demo.widget.viewholder.TabLayoutAndViewPagerViewHolder;
 
 /**
@@ -46,10 +43,10 @@ public class TabLayoutAndViewPagerActivity extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.mn_normal:
-                setTabItemCustomView(TabLayout.TabView.class, 0, 999);
+                holder.removeTabItemCustomView(0, holder.tabLayout.getTabCount());
                 break;
             case R.id.mn_custom_tab_view:
-                setTabItemCustomView(CustomTabItem.class, 0, 999);
+                holder.setTabItemCustomView(0, holder.tabLayout.getTabCount());
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -64,21 +61,4 @@ public class TabLayoutAndViewPagerActivity extends AppCompatActivity {
     private void init() {
         holder = new TabLayoutAndViewPagerViewHolder(this, findViewById(R.id.container));
     }
-
-    public void setTabItemCustomView(int layoutResId, int startPos, int endPos) {
-        View view = LayoutInflater.from(this).inflate(layoutResId, null);
-        setTabItemCustomView(view, startPos, endPos);
-
-    }
-
-    public void setTabItemCustomView(View view, int startPos, int endPos) {
-        holder.setTabItemCustomView(view, startPos, endPos);
-
-    }
-
-    public void setTabItemCustomView(Class<? extends TabLayout.TabView> itemViewClass, int startPos, int endPos) {
-        holder.setTabItemCustomView(itemViewClass, startPos, endPos);
-
-    }
-
 }
